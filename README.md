@@ -1,5 +1,5 @@
 # Управление RGB лентой на ESP8266 через Web интерфэйс
-![photo](http://www.imageup.ru/img25/3225617/esprgb.jpg)
+![photo](http://www.imageup.ru/img25/3225632/p1110022s.jpg)
 ## Описание проекта
 ##### Управление:
 * Из любого устройства умеющий на борту WIFI
