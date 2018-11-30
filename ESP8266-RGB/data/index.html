@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>color picker</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+</head>
+<body>
+	<script src="html5kellycolorpicker.min.js"></script>
+	<canvas id="picker"></canvas><br/>
+	<input id="color" value="#fff" type="text">
+	<style>
+		body{
+			margin:5px;
+			padding:0;
+		}
+		#picker{
+			border:1px solid black;
+			border-radius: 50%;
+		}
+		#color{
+			border: 1px solid white;
+			font-size: 20px;
+			text-align: center;
+			}
+
+		@media only screen and (min-width: 600px){
+			#color{
+				width: 120px;
+				margin: 20px 0 0 110px;
+			}
+		}
+
+		@media only screen and (max-width: 600px){
+			#picker{
+				width: 96%;
+				margin: 2%;
+
+			}
+			#color{
+				position: relative;
+				width: 33.3%;
+				margin: 60px 0 0 0;
+				left: 33.3%;
+			}
+		}	
+	</style>
+	<script src="colorpicker.js"></script>
+</body>
+</html>
