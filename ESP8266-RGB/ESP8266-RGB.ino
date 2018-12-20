@@ -9,22 +9,20 @@
 const char* ssid = "ssid"; // имя вашей сети
 const char* password = "password"; // пароль вашей сети
 
-IPAddress Ip(192,168,1,10); //IP-адрес для ESP8266
+IPAddress Ip(192,168,1,10); // IP-адрес для ESP8266
 IPAddress Gateway(192,168,1,1); // IP-адрес шлюза (роутера)
 IPAddress Subnet(255,255,255,0); // маска подсети, диапазон IP-адресов в локальной сети
 
-//инициализация websockets на 81 порту и веб-сервера
-WebSocketsServer webSocket(81); //создаем объект webSocket
+WebSocketsServer webSocket(81);
 ESP8266WebServer server(80);
 
 void setup(){
   Serial.begin(9600);
 
-  WiFi.config(Ip, Gateway, Subnet); //настройка конфигураций вашей сети
+  WiFi.config(Ip, Gateway, Subnet);
   WiFi.begin(ssid, password);
   Serial.println("");
 
-//повторяем запрос подключения
   while (WiFi.status() != WL_CONNECTED){ 
     delay(500);
     Serial.print(".");
@@ -33,10 +31,8 @@ void setup(){
     Serial.print("IP address: ");
     Serial.println(WiFi.localIP()); 
 
-//    server.on("/", [](){server.send(200, "text/html", WebPage);});
-
     server.onNotFound([](){
-    if(!handleFileRead(server.uri()))//при неудачном чтении файла отправляем клиенту код ошибки
+    if(!handleFileRead(server.uri()))
       server.send(404, "text/plain", "FileNotFound");
     });
 
@@ -45,11 +41,11 @@ void setup(){
     SPIFFS.begin();
 
     webSocket.begin();
-    webSocket.onEvent(webSocketEvent); //метод onEvent вызывает функцию webSocketEvent при получении данных через WebSocket    
+    webSocket.onEvent(webSocketEvent);
 }
 
 void loop() {
-  //обработка входящих запросов HTTP или WebSockets
+    //обработка входящих запросов HTTP или WebSockets
     webSocket.loop();
     server.handleClient();
 }
@@ -63,14 +59,12 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
     
      if(type == WStype_TEXT){
       if(payload[0] == '#'){
-        
-        //преобразуем в 24 битное цветовое число
+        // преобразуем в 24 битное цветовое число
         uint32_t rgb = (uint32_t) strtol((const char *) &payload[1], NULL, 16);
 
         Serial.println(rgb);
 
-        //регулируем яркость ШИМ сигналом
-        //преобразуем 24 бит по 8 бит на канал 
+        // преобразуем 24 бит по 8 бит на канал 
         analogWrite(LED_RED, abs(0 + (rgb >> 16) & 0xFF));
         analogWrite(LED_GREEN, abs(0 + (rgb >>  8) & 0xFF));
         analogWrite(LED_BLUE, abs(0 + (rgb >>  0) & 0xFF));
@@ -80,7 +74,6 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
 }
 
 // функция принимает URL-адрес и ищет файл в файловой системе
-// затем отправляет его
 bool handleFileRead(String path){
   if(path.endsWith("/")) path += "index.html";
   if(SPIFFS.exists(path)){
