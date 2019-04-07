@@ -1,5 +1,5 @@
 # Управление RGB лентой на ESP8266 через Web интерфэйс
-![photo](http://www.imageup.ru/img152/3333630/p111005-copy.jpg)
+![photo](http://www.imageup.ru/img152/3333639/color.jpg)
 ## Описание проекта
 ##### Управление:
 * По WiFi или по Ethernet порту
