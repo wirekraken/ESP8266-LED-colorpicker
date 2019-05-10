@@ -1,5 +1,5 @@
 # Управление RGB лентой на ESP8266 через Web интерфэйс
-![photo](http://www.imageup.ru/img152/3333639/color.jpg)
+![prev](https://i.ibb.co/rZB9m90/color-min.jpg)
 ## Описание проекта
 ##### Управление:
 * По WiFi или по Ethernet порту
@@ -23,7 +23,7 @@
    - [ESP8266FS плагин файловой системы](https://github.com/esp8266/arduino-esp8266fs-plugin) (используется для загрузки HTML, JS, CSS файлов в ESP)
     - Библиотека Websockets (доступно из менеджера библиотек)
 ## Схема подключения
-![scheme](http://www.imageup.ru/img25/3224933/esp-rgb.jpg)
+![scheme](https://i.ibb.co/N7ByBqT/esp-rgb.jpg)
 ## Установка
 - Подключить ESP8266 к вашему компьютеру
 - Открыть `ESP8266-RGB.ino` и обновить сетевые настройки для вашей сети 
